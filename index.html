@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -113,10 +114,6 @@
       transition: opacity 0.6s ease-in-out;
     }
 
-    .line.visible {
-      opacity: 0.4;
-    }
-
     .activation {
       position: absolute;
       bottom: 12%;
@@ -140,59 +137,1163 @@
     .activation.active {
       display: flex;
     }
-  </style>
+  
+    #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.08); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.08); }
+    }
+
+    #floatingChatBtn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      opacity: 0.8;
+    }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.08); }
+    }
+
+    .expanded-chat {
+      width: 260px !important;
+      height: 50px !important;
+      border-radius: 12px !important;
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.08); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    body.light-mode #floatingChatBtn {
+      position: fixed;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 0 4px rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.06) inset;
+      animation: bpmPulse 1s infinite ease-in-out;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    body.light-mode #floatingChatBtn {
+      background: rgba(0, 0, 0, 0.12);
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.12), 0 0 10px rgba(0,0,0,0.08) inset;
+    }
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.025); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.4); }
+    }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.08); }
+    }
+
+    #floatingChatBtn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      opacity: 0.8;
+    }
+
+    @keyframes bpmPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.01); }
+}
+      50% { transform: translateX(-50%) scale(1.08); }
+    }
+
+    .expanded-chat {
+      width: 260px !important;
+      height: 50px !important;
+      border-radius: 12px !important;
+    }
+
+    @keyframes pulseChat {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+      50% { transform: translateX(-50%) scale(1.08); opacity: 1; }
+    }
+    #floatingChatBtn:hover {
+      box-shadow: 0 0 12px #0ffb;
+      transform: translateX(-50%) scale(1.05);
+    }
+
+
+@keyframes drawLine {
+  0% { stroke-dashoffset: 200; opacity: 0; }
+  100% { stroke-dashoffset: 0; opacity: 0.5; }
+}
+
+
+    #chatBox {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #chatBox.visible {
+      opacity: 1;
+    }
+
+    #openAIlink {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 14px;
+      font-size: 0.85em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    body.light-mode #openAIlink {
+      border-color: black;
+      color: black;
+    }
+
+    #openAIlink:hover {
+      background: white;
+      color: black;
+    }
+
+    body.light-mode #openAIlink:hover {
+      background: black;
+      color: white;
+    }
+
+
+    #floatingChatBtn span {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.15;
+      transform: scale(1);
+      animation: dotPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    #floatingChatBtn span:nth-child(1) { animation-delay: 0s; }
+    #floatingChatBtn span:nth-child(2) { animation-delay: 0.3s; }
+    #floatingChatBtn span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.6); }
+    }
+
+</style>
 </head>
 <body>
+  <button id="floatingChatBtn" aria-label="Abrir Chat"><span></span><span></span><span></span></button>
   <div class="theme-switch" id="themeSwitch" onclick="toggleTheme(event)"></div>
   <div class="halo"></div>
 
   <div class="symbol" id="symbol">
     <svg width="240" height="240" viewBox="0 0 200 200">
       <circle cx="100" cy="100" r="90" stroke="white" stroke-width="2" fill="none"/>
-      <path id="center-line" d="M100 10 L100 190" stroke="white" stroke-width="3" opacity="0.0"/>
+      <path id="center-line" d="M100 10 L100 190" stroke="white" stroke-width="3" opacity="0.0" style="stroke-dasharray: 200; stroke-dashoffset: 200;"/>
     </svg>
   </div>
 
   <div class="line" id="lineEffect"></div>
 
   <div class="activation" id="activationBox">
-    <div id="activationText">Assistente Ativado: <b>KODUX</b></div>
-    <button onclick="alert('Prompt copiado!')">Copiar Prompt</button>
-    <button onclick="alert('Assistente ativado!')">Ativar Assistente</button>
+    <div id="activationText">Assistente Ativado: <b></b>
+<div id="chatBox" style="display:none; flex-direction:column; align-items:center; gap:8px; margin-top:12px;">
+  <input type="text" id="userInput" placeholder="Digite aqui..." style="padding:6px 10px; border-radius:6px; border:none; width:240px;">
+  <div id="chatResponse" style="font-size:0.9em; color:#ccc; max-width:280px; text-align:center;"></div>
+</div>
+<button id="toggleChatBtn">Abrir Chat</button>
+<a id="openAIlink" target="_blank" title="Iniciar no OpenAI">⚡→</a>
+</div>
+    <button id="copyPromptBtn">Copiar Prompt</button>
   </div>
 
   <script>
-    const themeBtn = document.getElementById("themeSwitch");
-    const body = document.body;
+    const icons = [
+      '<path d="M10 2 L2 18 H18 Z"/>',  // ⚡️
+      '<circle cx="10" cy="10" r="8"/>', // ⚫️
+      '<rect x="4" y="4" width="12" height="12"/>', // 🔘
+      '<path d="M10 0 A10 10 0 0 1 10 20 A10 10 0 0 1 10 0"/>', // 🧠
+      '<path d="M2 10 H18 M10 2 V18"/>', // 👁️
+      '<path d="M5 5 L15 15 M15 5 L5 15"/>', // ❌
+      '<path d="M10 0 L12 6 L18 6 L13 10 L15 16 L10 12 L5 16 L7 10 L2 6 L8 6 Z"/>', // ✴️
+      '<path d="M6 10 A4 4 0 1 0 14 10 A4 4 0 1 0 6 10"/>', // 🌊
+      '<path d="M2 12 Q6 4 10 12 T18 12"/>', // ⛰️
+      '<path d="M3 10 L10 3 L17 10 L10 17 Z"/>', // 🔷
+      '<path d="M6 2 L14 2 L14 18 L6 18 Z"/>', // 🕋
+      '<path d="M10 2 L12 8 L18 8 L13 12 L15 18 L10 14 L5 18 L7 12 L2 8 L8 8 Z"/>', // 🔥
+      '<circle cx="10" cy="10" r="4"/>', // ⭕
+    ];
+    const emojiMap = ["⚡️","⚫️","🔘","🧠","👁️","❌","✴️","🌊","⛰️","🔷","🕋","🔥","⭕"];
+    const activeArchetypes = [];
+    const text = document.getElementById("activationText");
     const line = document.getElementById("center-line");
     const activation = document.getElementById("activationBox");
-    const text = document.getElementById("activationText");
-
-    function toggleTheme(event) {
-      event.stopPropagation();
-      body.classList.toggle("light-mode");
-      themeBtn.classList.add("active");
-      setTimeout(() => themeBtn.classList.remove("active"), 500);
-    }
-
-    const center = document.getElementById("symbol");
-    let activeArchetypes = [];
-
-    const icons = [
-      '<path d="M10 2 L2 18 H18 Z"/>',  // triângulo (⚡️)
-      '<circle cx="10" cy="10" r="8"/>', // círculo (⚫️)
-      '<rect x="4" y="4" width="12" height="12"/>', // quadrado (🔘)
-      '<path d="M10 0 A10 10 0 0 1 10 20 A10 10 0 0 1 10 0"/>', // cérebro
-      '<path d="M2 10 H18 M10 2 V18"/>', // olho cruzado
-      '<path d="M5 5 L15 15 M15 5 L5 15"/>', // éter X
-      '<path d="M10 0 L12 6 L18 6 L13 10 L15 16 L10 12 L5 16 L7 10 L2 6 L8 6 Z"/>', // estrela
-      '<path d="M6 10 A4 4 0 1 0 14 10 A4 4 0 1 0 6 10"/>', // onda
-      '<path d="M2 12 Q6 4 10 12 T18 12"/>', // montanha
-      '<path d="M3 10 L10 3 L17 10 L10 17 Z"/>', // losango
-      '<path d="M6 2 L14 2 L14 18 L6 18 Z"/>', // pilar
-      '<path d="M10 2 L12 8 L18 8 L13 12 L15 18 L10 14 L5 18 L7 12 L2 8 L8 8 Z"/>', // fogo
-      '<circle cx="10" cy="10" r="4"/>', // pulso interior
-    ];
+    const copyBtn = document.getElementById("copyPromptBtn");
 
     icons.forEach((svgPath, i) => {
       const btn = document.createElement("div");
@@ -206,34 +1307,105 @@
       document.body.appendChild(btn);
     });
 
-    center.addEventListener("click", () => {
+    document.getElementById("symbol").addEventListener("click", () => {
       document.querySelectorAll(".archetype").forEach(b => b.classList.toggle("active"));
     });
 
     function toggleArchetype(btn, index) {
       btn.classList.toggle("selected");
       const i = activeArchetypes.indexOf(index);
-      if (i === -1) {
-        activeArchetypes.push(index);
-      } else {
-        activeArchetypes.splice(i, 1);
-      }
+      if (i === -1) activeArchetypes.push(index);
+      else activeArchetypes.splice(i, 1);
 
-      if (activeArchetypes.length === 3) {
-        activateFusion();
-      } else {
+      if (activeArchetypes.length === 3) activateFusion();
+      else {
         line.setAttribute("opacity", "0.0");
         activation.classList.remove("active");
       }
     }
 
+    let assistentes = [];
+    fetch('assistentes_ativacao.json')
+      .then(res => res.json())
+      .then(data => assistentes = data);
+
     function activateFusion() {
-      line.setAttribute("opacity", "0.5");
-      activation.classList.add("active");
-      const names = ["KODUX", "HORUS", "KOBLLUX", "LUXAR"];
-      const name = names[Math.floor(Math.random() * names.length)];
-      text.innerHTML = "Assistente Ativado: <b>" + name + "</b>";
+      const selected = activeArchetypes.map(i => emojiMap[i]).sort();
+      const match = assistentes.find(a => JSON.stringify([...a.simbolos].sort()) === JSON.stringify(selected));
+
+      if (match) {
+        line.setAttribute("opacity", "0.5");
+      line.style.animation = "drawLine 0.8s ease-out forwards";
+        activation.classList.add("active");
+        text.innerHTML = `Assistente Ativado: <b>${match.nome} A.Infodose</b><br><small>${match.frase}</small>`;
+        
+    copyBtn.onclick = () => {
+      currentPrompt = match.prompt;
+
+      let bpm = match.bpm || 72;
+      const btn = document.getElementById("floatingChatBtn");
+      const tempo = 60 / bpm;
+      btn.style.animationDuration = tempo + "s";
+      btn.style.background = "rgba(255, 255, 255, 0.18)";
+      if (document.body.classList.contains("light-mode")) {
+        btn.style.background = "rgba(0, 0, 0, 0.18)";
+      }
+
+      navigator.clipboard.writeText(match.prompt).then(() => alert("Prompt copiado!"));
+      document.getElementById("openAIlink").href = "https://chat.openai.com/?prompt=" + encodeURIComponent(match.prompt);
+    };
+    
+      } else {
+        activation.classList.add("active");
+        text.innerHTML = "Combinação não encontrada.";
+        copyBtn.onclick = () => {};
+      }
     }
-  </script>
+
+    function toggleTheme(event) {
+      event.stopPropagation();
+      document.body.classList.toggle("light-mode");
+      const themeBtn = document.getElementById("themeSwitch");
+      themeBtn.classList.add("active");
+      setTimeout(() => themeBtn.classList.remove("active"), 500);
+    }
+  
+let currentPrompt = "";
+document.getElementById("toggleChatBtn").onclick = () => {
+  const box = document.getElementById("chatBox");
+  box.style.display = box.style.display === "none" ? "flex" : "none";
+};
+
+document.getElementById("userInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    const input = this.value.trim();
+    if (!input || !currentPrompt) return;
+    const responseBox = document.getElementById("chatResponse");
+    // Simulação simples de resposta baseada no prompt
+    responseBox.innerText = "Analisando...";
+    setTimeout(() => {
+      responseBox.innerText = `(${input}) — resposta baseada no assistente ativo:
+` + currentPrompt.slice(0, 160) + "...";
+    }, 600);
+  }
+});
+
+
+document.getElementById("floatingChatBtn").onclick = () => {
+  const box = document.getElementById("chatBox");
+  if (!box) return alert("Ative um assistente primeiro!");
+  box.style.display = "flex";
+  box.scrollIntoView({ behavior: "smooth" });
+};
+
+
+document.getElementById("floatingChatBtn").onclick = () => {
+  const box = document.getElementById("chatBox");
+  if (!box) return alert("Ative um assistente primeiro!");
+  box.style.display = "flex";
+  box.scrollIntoView({ behavior: "smooth" });
+};
+
+</script>
 </body>
 </html>
