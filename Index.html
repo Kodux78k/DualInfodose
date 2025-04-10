@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infodose | Centro Circular</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, #0a0a0a, #000000);
+      color: white;
+      transition: background 0.6s ease;
+    }
+
+    body.light-mode {
+      background: radial-gradient(circle at center, #f0f0f0, #dcdcdc);
+      color: #111;
+    }
+
+    .content {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      position: absolute;
+    }
+
+    iframe.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      z-index: 30;
+    }
+
+    body.light-mode .theme-toggle {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* BOTÃO CIRCULAR INFERIOR */
+    .circle-button {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      color: white;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 31;
+      backdrop-filter: blur(6px);
+      transition: all 0.4s ease;
+    }
+
+    .circle-button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    body.light-mode .circle-button {
+      background: rgba(0,0,0,0.05);
+      border-color: rgba(0,0,0,0.2);
+      color: #000;
+    }
+
+    .sidebar {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      z-index: 20;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar.open {
+      display: flex;
+    }
+
+    .sidebar button {
+      background: none;
+      border: none;
+      color: inherit;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .sidebar button:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    body.light-mode .sidebar button:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="theme-toggle" onclick="toggleTheme()"></div>
+  <div class="circle-button" onclick="toggleMenu()">⭕</div>
+
+  <div class="content">
+    <iframe id="frame" src="Splash.html" class="active"></iframe>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <button onclick="loadPage('Splash.html')">Splash</button>
+    <button onclick="loadPage('MetaLux_UI_FINAL_V10_FUNCIONAL_OK.html')">MetaLux</button>
+    <button onclick="loadPage('kodux_index_3x9x7.html')">KODUX 3x9x7</button>
+    <button onclick="loadPage('index_kodux.html')">Index KODUX</button>
+    <button onclick="loadPage('index_metalux.html')">Index MetaLux</button>
+  </div>
+
+  <script>
+    const frame = document.getElementById('frame');
+    const sidebar = document.getElementById('sidebar');
+
+    function loadPage(url) {
+      frame.classList.remove('active');
+      setTimeout(() => {
+        frame.src = url;
+        frame.onload = () => frame.classList.add('active');
+        sidebar.classList.remove('open');
+      }, 300);
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+    }
+
+    function toggleMenu() {
+      sidebar.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
