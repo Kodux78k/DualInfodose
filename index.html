@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Infodose | Menu Circular ◉</title>
+  <title>Infodose | Menu Ponte-Line</title>
   <style>
     body {
       margin: 0;
@@ -61,69 +61,52 @@
       background: rgba(0, 0, 0, 0.3);
     }
 
-    .menu-button {
+    .menu-bridge {
       position: fixed;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      border: 2px solid rgba(255,255,255,0.2);
-      color: white;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.3);
       cursor: pointer;
       z-index: 40;
-      backdrop-filter: blur(6px);
       transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
     }
 
-    .menu-button:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.1);
+    .menu-bridge:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: translateX(-50%) scaleX(1.2);
     }
 
-    .menu-button.top {
-      top: 20px;
-      right: 20px;
+    body.light-mode .menu-bridge {
+      background: rgba(0,0,0,0.2);
     }
 
-    .menu-button.bottom {
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    body.light-mode .menu-button {
-      background: rgba(0,0,0,0.05);
-      color: #111;
-      border-color: rgba(0,0,0,0.2);
-    }
-
-    .menu-circle {
+    .sub-buttons {
       position: fixed;
-      bottom: 110px;
+      bottom: 80px;
       left: 50%;
       transform: translateX(-50%);
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 35;
-    }
-
-    .menu-circle.open {
       display: flex;
+      gap: 18px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .symbol-button {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      font-size: 22px;
+    .sub-buttons.show {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    .sub-button {
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
       color: white;
       background: rgba(255,255,255,0.08);
       border: none;
@@ -136,31 +119,14 @@
       transition: transform 0.3s ease, background 0.3s ease;
     }
 
-    .symbol-button:hover {
+    .sub-button:hover {
       background: rgba(255,255,255,0.2);
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
 
-    body.light-mode .symbol-button {
+    body.light-mode .sub-button {
       background: rgba(0,0,0,0.08);
       color: #111;
-    }
-
-    .symbol-button[data-tooltip]:hover::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: -22px;
-      font-size: 0.75rem;
-      background: rgba(0,0,0,0.6);
-      padding: 2px 8px;
-      border-radius: 6px;
-      color: white;
-      white-space: nowrap;
-    }
-
-    body.light-mode .symbol-button[data-tooltip]:hover::after {
-      background: rgba(0,0,0,0.2);
-      color: #000;
     }
   </style>
 </head>
@@ -168,33 +134,29 @@
 
 <div class="theme-toggle" onclick="toggleTheme()"></div>
 
-<!-- Botões de ativação do menu -->
-<div class="menu-button top" onclick="toggleMenu()">◉</div>
-<div class="menu-button bottom" onclick="toggleMenu()">◉</div>
-
-<!-- Menu circular com todos ◉ -->
-<div class="menu-circle" id="menuCircle">
-  <button class="symbol-button" style="top:10%; left:42%;" data-tooltip="Pulso Inicial" onclick="loadPage('Splash.html')">◉</button>
-  <button class="symbol-button" style="top:30%; left:15%;" data-tooltip="MetaLux" onclick="loadPage('MetaLux_UI_FINAL_V10_FUNCIONAL_OK.html')">◉</button>
-  <button class="symbol-button" style="top:60%; left:15%;" data-tooltip="KODUX 3x9x7" onclick="loadPage('kodux_index_3x9x7.html')">◉</button>
-  <button class="symbol-button" style="top:75%; left:42%;" data-tooltip="Index KODUX" onclick="loadPage('index_kodux.html')">◉</button>
-  <button class="symbol-button" style="top:60%; left:72%;" data-tooltip="Index MetaLux" onclick="loadPage('index_metalux.html')">◉</button>
-</div>
-
 <div class="content">
   <iframe id="frame" src="Splash.html" class="active"></iframe>
 </div>
 
+<div class="sub-buttons" id="menu">
+  <button class="sub-button" onclick="loadPage('Splash.html')">◉</button>
+  <button class="sub-button" onclick="loadPage('MetaLux_UI_FINAL_V10_FUNCIONAL_OK.html')">◉</button>
+  <button class="sub-button" onclick="loadPage('kodux_index_3x9x7.html')">◉</button>
+  <button class="sub-button" onclick="loadPage('index_kodux.html')">◉</button>
+</div>
+
+<div class="menu-bridge" onclick="toggleMenu()"></div>
+
 <script>
   const frame = document.getElementById('frame');
-  const menu = document.getElementById('menuCircle');
+  const menu = document.getElementById('menu');
 
   function toggleTheme() {
     document.body.classList.toggle('light-mode');
   }
 
   function toggleMenu() {
-    menu.classList.toggle('open');
+    menu.classList.toggle('show');
   }
 
   function loadPage(url) {
@@ -202,7 +164,7 @@
     setTimeout(() => {
       frame.src = url;
       frame.onload = () => frame.classList.add('active');
-      menu.classList.remove('open');
+      menu.classList.remove('show');
     }, 300);
   }
 </script>
