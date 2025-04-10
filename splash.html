@@ -1,50 +1,79 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infodose - Splash</title>
+  <title>Splash | Infodose</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
       height: 100vh;
+      background: radial-gradient(ellipse at center, #0a0a0a, #000000);
       display: flex;
-      align-items: center;
       justify-content: center;
-      background: #d6d6d6;
-      transition: background 1s ease;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+      animation: fadeIn 2s ease-out;
+      transition: background 0.5s ease-in-out;
     }
-    body.dark {
-      background: #0f0f0f;
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-    .circle {
-      width: 160px;
-      height: 160px;
+
+    .halo {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
       border-radius: 50%;
-      background: linear-gradient(to top, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+      animation: glow 4s ease-in-out infinite;
     }
-    body.dark .circle {
-      background: linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+
+    @keyframes glow {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .symbol {
+      width: 200px;
+      z-index: 2;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: 0.9; }
+    }
+
+    .fade-out {
+      animation: fadeOut 1s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; transform: scale(1.05); }
     }
   </style>
 </head>
-<body>
-  <div class="circle"></div>
+<body onclick="goToIndex()">
+  <div class="halo"></div>
+  <div class="symbol">
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" stroke="white" stroke-width="2" fill="none"/>
+      <line x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="3" opacity="0.2"/>
+      <path d="M100 10 A90 90 0 0 0 100 190" stroke="white" stroke-width="6" fill="none"/>
+    </svg>
+  </div>
 
   <script>
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const hora = new Date().getHours();
-    const temaAlvo = (hora >= 18 || hora < 6 || prefersDark) ? 'dark' : 'light';
-    const temaInicial = temaAlvo === 'dark' ? 'light' : 'dark';
-
-    document.body.classList.add(temaInicial);
-    setTimeout(() => {
-      document.body.classList.replace(temaInicial, temaAlvo);
-      localStorage.setItem('theme', temaAlvo);
-      window.location.href = 'index.html';
-    }, 1200);
+    function goToIndex() {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 900);
+    }
   </script>
 </body>
 </html>
