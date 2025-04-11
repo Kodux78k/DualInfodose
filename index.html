@@ -3,71 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pulso | Index</title>
+  <title>Pulso Overlay</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       height: 100vh;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.6s ease-in-out;
-      animation: fadeIn 2s ease-out;
       background: radial-gradient(ellipse at center, #0a0a0a, #000000);
       color: white;
+      transition: background 0.6s ease-in-out;
     }
+
     body.light-mode {
       background: radial-gradient(ellipse at center, #ffffff, #e0e0e0);
       color: #000;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      0% { opacity: 1; transform: scale(1); filter: blur(0); }
-      100% { opacity: 0; transform: scale(0.9); filter: blur(8px); }
-    }
-
-    .fade-out {
-      animation: fadeOut 1.2s forwards ease-in-out;
-    }
-
     .halo {
-      position: absolute;
-      width: 520px;
-      height: 520px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      transform: translate(-50%, -50%);
       background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
       border-radius: 50%;
       animation: glow 4s ease-in-out infinite;
       z-index: 1;
-      transition: background 0.6s ease-in-out;
-    }
-
-    body.light-mode .halo {
-      background: radial-gradient(circle, rgba(0,0,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     @keyframes glow {
-      0%, 100% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.12); opacity: 1; }
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
     }
 
     .symbol {
-      width: 200px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 260px;
+      transform: translate(-50%, -50%);
       cursor: pointer;
       z-index: 2;
-      animation: fractalResp 5.5s infinite ease-in-out;
+      animation: breath 5.5s infinite ease-in-out;
       transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
     }
 
-    @keyframes fractalResp {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.08); opacity: 0.92; }
+    @keyframes breath {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.06); opacity: 0.95; }
     }
 
     .symbol.pulse-light {
@@ -75,9 +61,20 @@
     }
 
     @keyframes pulseGlow {
-      0% { filter: drop-shadow(0 0 0px rgba(255,255,255,0)); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 25px rgba(255,255,255,0.45)); transform: scale(1.1); }
-      100% { filter: drop-shadow(0 0 0px rgba(255,255,255,0)); transform: scale(1); }
+      0% { filter: drop-shadow(0 0 0px rgba(255,255,255,0)); }
+      50% { filter: drop-shadow(0 0 35px rgba(255,255,255,0.5)); }
+      100% { filter: drop-shadow(0 0 0px rgba(255,255,255,0)); }
+    }
+
+    .symbol svg line.risco {
+      stroke-dasharray: 180;
+      stroke-dashoffset: -180;
+      animation: drawLine 1.2s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
     }
 
     .symbol-bar {
@@ -87,8 +84,8 @@
       transform: translateX(-50%) translateY(20px);
       display: flex;
       gap: 20px;
-      opacity: 0;
-      pointer-events: none;
+      opacity: 1;
+      pointer-events: all;
       transition: opacity 0.4s ease, transform 0.4s ease;
       z-index: 10;
     }
@@ -139,13 +136,22 @@
       background: rgba(255, 255, 255, 0.6);
       transform: translateX(-50%) scaleX(1.2);
     }
+
+    .fade-out {
+      animation: fadeOut 1s ease-in forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; transform: scale(1); filter: blur(0); }
+      100% { opacity: 0; transform: scale(0.9); filter: blur(8px); }
+    }
   </style>
 </head>
 <body>
   <div class="halo"></div>
 
   <div class="symbol" id="symbol">
-    <svg height="200" width="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <svg width="260" height="260" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="grad-dark" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" style="stop-color:#ffffff; stop-opacity:0.8" />
@@ -153,7 +159,7 @@
         </linearGradient>
       </defs>
       <circle cx="100" cy="100" r="90" stroke="url(#grad-dark)" stroke-width="2" fill="none"/>
-      <line x1="100" y1="10" x2="100" y2="190" stroke="url(#grad-dark)" stroke-width="3" opacity="0.2"/>
+      <line x1="100" y1="10" x2="100" y2="190" class="risco" stroke="url(#grad-dark)" stroke-width="3" class="risco"/>
       <path d="M100 10 A90 90 0 0 0 100 190" fill="none" stroke="url(#grad-dark)" stroke-width="6"/>
     </svg>
   </div>
@@ -169,10 +175,12 @@
 
   <script>
     const body = document.body;
+    document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
     const symbol = document.getElementById("symbol");
     const symbolBar = document.getElementById("symbolBar");
     const bridge = document.getElementById("themeToggleHold");
 
+    // Inicia com tema salvo
     let isDark = localStorage.getItem('infodose_theme') !== 'light';
     if (!isDark) {
       body.classList.add("light-mode");
@@ -183,19 +191,21 @@
       symbolBar.classList.toggle("show");
     }
 
+    // Clique duplo → splash
     let lastClick = 0;
-    symbol.addEventListener("click", function () {
+    symbol.addEventListener("click", () => {
       const now = new Date().getTime();
       if (now - lastClick < 500) {
         symbol.classList.add("pulse-light");
-        document.body.classList.add("fade-out");
+        body.classList.add("fade-out");
         setTimeout(() => {
           window.location.href = 'splash.html';
-        }, 1000);
+        }, 800);
       }
       lastClick = now;
     });
 
+    // Segurar ponte por 1s alterna tema
     let holdTimer = null;
     bridge.addEventListener("mousedown", () => {
       holdTimer = setTimeout(() => {
