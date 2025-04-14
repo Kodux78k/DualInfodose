@@ -165,10 +165,6 @@
       themeSwitch.classList.add('active');
       symbol.classList.add('pulse-effect');
 
-      setTimeout(() => {
-        themeSwitch.classList.remove('active');
-        symbol.classList.remove('pulse-effect');
-      }, 500);
 
       localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
 
