@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetaLux Quádruplo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      padding: 3rem;
+    }
+    section {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .input-area, .output-area {
+      margin-top: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+    button {
+      background: #ffffff10;
+      border: 1px solid #ffffff30;
+      padding: 0.8rem 1.2rem;
+      border-radius: 2rem;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #ffffff30;
+    }
+    .emoji-box, .triple-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .pulse {
+      animation: pulse 1.2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
+      70% { box-shadow: 0 0 0 15px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .copied {
+      color: #6f6;
+      margin-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Seção 1 - Chat Central -->
+  <section id="chat-section">
+    <h2>1. Chat Simbólico</h2>
+    <div class="input-area">
+      <input type="text" id="chatInput" placeholder="Escreva sua intenção..." />
+      <button onclick="sendMessage()">Enviar</button>
+      <button onclick="listenResponse()">Ouvir Resposta</button>
+    </div>
+    <div class="output-area" id="chatOutput"></div>
+  </section>
+
+  <!-- Seção 2 - Tríades Simbólicas -->
+  <section>
+    <h2>2. Geração de Tríade Simbólica</h2>
+    <button onclick="generateResponse()">◯ Gerar Resposta</button>
+    <button onclick="generateQuestion()">🌀 Gerar Pergunta</button>
+    <div class="emoji-box" id="triadBox">⚡️ ⭕ ⚡️</div>
+  </section>
+
+  <!-- Seção 3 - Escolhas Arquetípicas -->
+  <section>
+    <h2>3. Ativação Arquetípica</h2>
+    <label>Cor que vem à mente: <input type="text" id="colorInput" /></label><br><br>
+    <label>Movimento (mais ou menos?): <input type="text" id="movementInput" /></label><br><br>
+    <label>Elemento: <input type="text" id="elementInput" placeholder="Água, Madeira, Fogo, Terra, Metal" /></label><br>
+    <button onclick="revealArchetype()">Revelar Arquétipo</button>
+    <div class="output-area" id="archetypeResult"></div>
+  </section>
+
+  <!-- Seção 4 - Geração de Prompt -->
+  <section>
+    <h2>4. Geração de Prompt Técnico</h2>
+    <textarea id="intentionInput" placeholder="Digite sua intenção simbólica..."></textarea>
+    <button onclick="transformToPrompt()">Transformar em Prompt Técnico</button>
+    <div class="output-area pulse" id="generatedPrompt"></div>
+    <button onclick="copyPrompt()">Copiar Prompt</button><span id="copyMsg"></span>
+  </section>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('chatInput').value;
+      document.getElementById('chatOutput').innerText = 'Mensagem enviada: ' + input;
+    }
+
+    function listenResponse() {
+      const msg = new SpeechSynthesisUtterance("Esta é a resposta simbólica da IA.");
+      window.speechSynthesis.speak(msg);
+    }
+
+    function generateResponse() {
+      const responseEmojis = ['⚡️', '✨', '⭕️', '🌕', '♾️'];
+      document.getElementById('triadBox').innerText = shuffle(responseEmojis).slice(0,3).join(' ');
+    }
+
+    function generateQuestion() {
+      const questionEmojis = ['🌀', '🌌', '🪐', '⚙️', '🫧'];
+      document.getElementById('triadBox').innerText = shuffle(questionEmojis).slice(0,3).join(' ');
+    }
+
+    function shuffle(array) {
+      let currentIndex = array.length,  randomIndex;
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+      }
+      return array;
+    }
+
+    function revealArchetype() {
+      const color = document.getElementById('colorInput').value.toLowerCase();
+      const movement = document.getElementById('movementInput').value.toLowerCase();
+      const element = document.getElementById('elementInput').value.toLowerCase();
+      const result = `Com base nas escolhas: Cor "${color}", Movimento "${movement}", Elemento "${element}", o arquétipo está sendo revelado...`;
+      document.getElementById('archetypeResult').innerText = result;
+    }
+
+    function transformToPrompt() {
+      const intention = document.getElementById('intentionInput').value;
+      const transformed = `Prompt gerado: Crie uma resposta simbólica baseada na intenção: "${intention}" com estilo MetaLux.`;
+      const output = document.getElementById('generatedPrompt');
+      output.innerText = transformed;
+      output.classList.add('pulse');
+    }
+
+    function copyPrompt() {
+      const promptText = document.getElementById('generatedPrompt').innerText;
+      navigator.clipboard.writeText(promptText).then(() => {
+        document.getElementById('copyMsg').innerText = ' Copiado!';
+      });
+    }
+  </script>
+</body>
+</html>
