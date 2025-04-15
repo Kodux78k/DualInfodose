@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Infodose | Menu Lateral</title>
   <style>
     body {
@@ -36,11 +36,11 @@
       opacity: 0;
       transition: opacity 0.6s ease;
       position: absolute;
+      z-index: 1;
     }
 
     iframe.active {
       opacity: 1;
-      z-index: 1;
     }
 
     .theme-toggle {
@@ -63,19 +63,27 @@
 
     .symbol-bar {
       position: fixed;
-      top: 50%;
+      top: 55%;
       right: 20px;
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
       z-index: 40;
+      opacity: 1;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .symbol-bar.hidden {
+      opacity: 0;
+      transform: translateY(-50%) translateX(100%);
+      pointer-events: none;
     }
 
     .symbol-button {
-      width: 28px;
-      height: 28px;
-      font-size: 14px;
+      width: 24px;
+      height: 24px;
+      font-size: 12px;
       color: white;
       background: rgba(255,255,255,0.05);
       border: none;
@@ -86,7 +94,7 @@
       justify-content: center;
       backdrop-filter: blur(4px);
       transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0.7;
+      opacity: 0.6;
     }
 
     .symbol-button:hover {
@@ -94,16 +102,6 @@
       transform: scale(1.1);
       box-shadow: 0 0 8px rgba(255,255,255,0.3);
       opacity: 1;
-    }
-
-    .symbol-button:nth-child(1) { animation-delay: 0s; }
-    .symbol-button:nth-child(2) { animation-delay: 0.5s; }
-    .symbol-button:nth-child(3) { animation-delay: 1s; }
-    .symbol-button:nth-child(4) { animation-delay: 1.5s; }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.12); opacity: 1; }
     }
 
     body.light-mode .symbol-button {
@@ -116,7 +114,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 128px;
+      width: 28px;
       height: 28px;
       background: transparent;
       border: 2px solid rgba(255,255,255,0.5);
@@ -127,6 +125,7 @@
       justify-content: center;
       backdrop-filter: blur(4px);
       transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      z-index: 50;
     }
 
     .lock-button:hover {
@@ -138,6 +137,48 @@
     body.light-mode .lock-button {
       border-color: rgba(0,0,0,0.5);
     }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.05);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+      z-index: 50;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255,255,255,0.15);
+      transform: scale(1.1);
+    }
+
+    body.light-mode .menu-toggle {
+      background: rgba(0,0,0,0.05);
+      color: #111;
+    }
+
+    .menu-toggle-line {
+      width: 2px;
+      height: 16px;
+      background-color: white;
+    }
+
+    body.light-mode .menu-toggle-line {
+      background-color: #111;
+    }
+
+    .menu-toggle.active {
+      opacity: 0.4;
+    }
   </style>
 </head>
 <body class="dark-mode">
@@ -148,17 +189,20 @@
     <iframe id="frame" src="Info.html" class="active"></iframe>
   </div>
 
-  <div class="symbol-bar">
-    <button class="symbol-button" onclick="loadPage('Info.html')">◉</button>
-    <button class="symbol-button" onclick="loadPage('MetaLux_UI_FINAL_V10_FUNCIONAL_OK_EDITADO.html')">◉</button>
-    <button class="symbol-button" onclick="loadPage('Meta-pulso.html')">◉</button>
-    <button class="symbol-button" onclick="loadPage('MetaLuxapp.html')">◉</button>
+  <div class="symbol-bar" id="symbolBar">
+    <button class="symbol-button" onclick="loadPage('Info.html')">â</button>
+    <button class="symbol-button" onclick="loadPage('MetaLux_UI_FINAL_V10_FUNCIONAL_OK_EDITADO.html')">â</button>
+    <button class="symbol-button" onclick="loadPage('Meta-pulso.html')">â</button>
+    <button class="symbol-button" onclick="loadPage('MetaLuxapp.html')">â</button>
   </div>
 
   <button class="lock-button" onclick="loadPage('splash.html')"></button>
 
+  <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()"></button>
+
   <script>
     const frame = document.getElementById('frame');
+    const symbolBar = document.getElementById('symbolBar');
 
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
@@ -170,6 +214,10 @@
         frame.src = url;
         frame.onload = () => frame.classList.add('active');
       }, 300);
+    }
+
+    function toggleMenu() {
+      symbolBar.classList.toggle('hidden');
     }
   </script>
 
