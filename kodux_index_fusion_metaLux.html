@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KODUX 3x9x7 JSON Fusion</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #0a0a0a, #000000);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+      transition: background 0.8s ease-in-out;
+    }
+
+    body.light-mode {
+      background: radial-gradient(circle at center, #f0f0f0, #dcdcdc);
+    }
+
+    .theme-switch {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+    }
+
+    .theme-switch.active {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .halo {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+      border-radius: 50%;
+      animation: haloGlow 4s infinite ease-in-out;
+    }
+
+    @keyframes haloGlow {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+    }
+
+    .symbol {
+      width: 240px;
+      height: 240px;
+      z-index: 2;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: pulse 3s infinite;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .archetype {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+
+    .archetype.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .archetype.selected {
+      border-color: white;
+      box-shadow: 0 0 12px rgba(255,255,255,0.5);
+    }
+
+    .response-box {
+      position: absolute;
+      bottom: 10%;
+      background: rgba(255,255,255,0.05);
+      color: white;
+      padding: 16px;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .response-box.active {
+      display: flex;
+    }
+
+    .response-box button {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      padding: 8px 16px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-switch" id="themeSwitch" onclick="toggleTheme(event)"></div>
+  <div class="halo"></div>
+  <div class="symbol" id="symbol">
+    <svg width="200" height="200" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="90" stroke="white" stroke-width="2" fill="none"/>
+      <line id="center-line" x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="3" opacity="0"/>
+    </svg>
+  </div>
+
+  <div class="response-box" id="responseBox">
+    <div id="responseText">Ativando...</div>
+    <button onclick="copyPrompt()">Copiar Prompt</button>
+    <button onclick="alert('Assistente Ativado')">Ativar Assistente</button>
+  </div>
+
+  <script>
+    const themeBtn = document.getElementById("themeSwitch");
+    function toggleTheme(event) {
+      event.stopPropagation();
+      document.body.classList.toggle("light-mode");
+      themeBtn.classList.add("active");
+      setTimeout(() => themeBtn.classList.remove("active"), 500);
+    }
+
+    const center = document.getElementById("symbol");
+    const selected = [];
+    const icons = Array.from({ length: 13 }, (_, i) => i + 1);
+    icons.forEach((icon, i) => {
+      const el = document.createElement("div");
+      el.classList.add("archetype");
+      el.innerText = icon;
+      const angle = (i / icons.length) * 2 * Math.PI;
+      const r = 150;
+      el.style.left = `calc(50% + ${Math.cos(angle)*r}px - 17px)`;
+      el.style.top = `calc(50% + ${Math.sin(angle)*r}px - 17px)`;
+      el.onclick = (e) => {
+        e.stopPropagation();
+        el.classList.toggle("selected");
+        if (selected.includes(icon)) {
+          selected.splice(selected.indexOf(icon), 1);
+        } else {
+          selected.push(icon);
+        }
+        if (selected.length === 3) activate();
+      };
+      document.body.appendChild(el);
+    });
+
+    center.onclick = () => {
+      document.querySelectorAll('.archetype').forEach(a => a.classList.toggle("active"));
+    };
+
+    async function activate() {
+      document.getElementById("center-line").setAttribute("opacity", "0.5");
+      const res = await fetch('78K_Q_FINAL_metaLux_infodose.json');
+      const data = await res.json();
+      const box = document.getElementById("responseBox");
+      const text = document.getElementById("responseText");
+      text.innerText = `Assistente Ativado: ${data.codigo}
+
+"${data.resposta.mantra}"`;
+      box.classList.add("active");
+      window.currentPrompt = JSON.stringify(data, null, 2);
+    }
+
+    function copyPrompt() {
+      navigator.clipboard.writeText(window.currentPrompt);
+      alert("Prompt copiado para a área de transferência!");
+    }
+  </script>
+</body>
+</html>
