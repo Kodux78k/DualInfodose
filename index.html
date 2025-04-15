@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infodose | Menu Horizontal ◉</title>
+  <title>Infodose | Menu Lateral</title>
   <style>
     body {
       margin: 0;
@@ -63,20 +63,21 @@
 
     .symbol-bar {
       position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
       display: flex;
-      gap: 24px;
+      flex-direction: column;
+      gap: 16px;
       z-index: 40;
     }
 
     .symbol-button {
-      width: 44px;
-      height: 44px;
-      font-size: 22px;
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
       color: white;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
       border: none;
       border-radius: 50%;
       cursor: pointer;
@@ -84,13 +85,15 @@
       align-items: center;
       justify-content: center;
       backdrop-filter: blur(4px);
-      transition: transform 0.3s ease, background 0.3s ease;
-      animation: pulse 4s infinite ease-in-out;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0.7;
     }
 
     .symbol-button:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.15);
+      background: rgba(255,255,255,0.15);
+      transform: scale(1.1);
+      box-shadow: 0 0 8px rgba(255,255,255,0.3);
+      opacity: 1;
     }
 
     .symbol-button:nth-child(1) { animation-delay: 0s; }
@@ -104,8 +107,36 @@
     }
 
     body.light-mode .symbol-button {
-      background: rgba(0,0,0,0.08);
+      background: rgba(0,0,0,0.05);
       color: #111;
+    }
+
+    .lock-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .lock-button:hover {
+      background: rgba(255,255,255,0.1);
+      transform: scale(1.1);
+      border-color: rgba(255,255,255,0.8);
+    }
+
+    body.light-mode .lock-button {
+      border-color: rgba(0,0,0,0.5);
     }
   </style>
 </head>
@@ -114,15 +145,17 @@
   <div class="theme-toggle" onclick="toggleTheme()"></div>
 
   <div class="content">
-    <iframe id="frame" src="Info.html" class="active"></iframe>
+    <iframe id="frame" src="splash.html" class="active"></iframe>
   </div>
 
   <div class="symbol-bar">
     <button class="symbol-button" onclick="loadPage('Info.html')">◉</button>
     <button class="symbol-button" onclick="loadPage('MetaLux_UI_FINAL_V10_FUNCIONAL_OK_EDITADO.html')">◉</button>
     <button class="symbol-button" onclick="loadPage('Meta-pulso.html')">◉</button>
-    <button class="symbol-button" onclick="loadPage('Metaluxkoduxinfodose.html')">◉</button>
+    <button class="symbol-button" onclick="loadPage('MetaLuxapp.html')">◉</button>
   </div>
+
+  <button class="lock-button" onclick="loadPage('splash.html')"></button>
 
   <script>
     const frame = document.getElementById('frame');
