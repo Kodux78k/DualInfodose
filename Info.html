@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <title>Infodose</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --text-color: #111;
+      --icon-fill: #111;
+    }
+    body.dark {
+      --text-color: #f1f1f1;
+      --icon-fill: #f1f1f1;
+    }
+    body {
+      background: radial-gradient(ellipse at center, #d6d6d6 0%, #bcbcbc 100%);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: 4vh 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      transition: background 1s ease, color 1s ease;
+    }
+    body.dark {
+      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+    }
+
+    .circle-wrapper {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .pulse-shadow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 3s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .circle {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      animation: spin 6s linear infinite;
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+      background: linear-gradient(to top, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+      transition: background 1s ease;
+    }
+
+    body.dark .circle {
+      background: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
+    }
+
+    #toggleTema {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    #toggleTema svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--icon-fill);
+      stroke-width: 3;
+      fill: none;
+    }
+
+    .response {
+      margin-top: 2vh;
+      max-width: 500px;
+      text-align: center;
+      opacity: 0.7;
+      font-size: 1rem;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toggleTema" onclick="alternarTema()">
+    <svg viewBox="0 0 100 100">
+      <path d="M50,50 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0"/>
+    </svg>
+  </div>
+
+  <div class="circle-wrapper">
+    <div class="pulse-shadow"></div>
+    <div class="circle" onclick="gerarIntencaoPulso()"></div>
+  </div>
+
+  <div class="response" id="resposta">Bem-vindo(a) ao Infodose.</div>
+
+  <script>
+    function alternarTema() {
+      const corpo = document.body;
+      const novoTema = corpo.classList.contains('dark') ? 'light' : 'dark';
+      corpo.classList.toggle('dark');
+      localStorage.setItem('theme', novoTema);
+    }
+
+    function detectarTemaAutomaticamente() {
+      const hora = new Date().getHours();
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const alvo = (hora >= 18 || hora < 6 || prefersDark) ? 'dark' : 'light';
+
+      document.body.classList.add(alvo === 'dark' ? 'light' : 'dark');
+
+      setTimeout(() => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('theme', alvo);
+      }, 500);
+    }
+
+    function aplicarTemaSalvo() {
+      const tema = localStorage.getItem('theme');
+      if (tema) {
+        document.body.classList.toggle('dark', tema === 'dark');
+      }
+    }
+
+    function gerarIntencaoPulso() {
+      const res = document.getElementById('resposta');
+      res.textContent = "Você clicou no círculo. (placeholder)";
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const temaSalvo = localStorage.getItem('theme');
+      if (temaSalvo) {
+        aplicarTemaSalvo();
+      } else {
+        detectarTemaAutomaticamente();
+      }
+    });
+  </script>
+
+</body>
+</html>
