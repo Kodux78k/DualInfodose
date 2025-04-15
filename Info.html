@@ -156,8 +156,9 @@
     }
 
     function gerarIntencaoPulso() {
-      const res = document.getElementById('resposta');
-      res.textContent = "Você clicou no círculo. (placeholder)";
+  const res = document.getElementById('resposta');
+  res.textContent = "Você ativou o círculo.";
+  window.location.href = "index.html"; // Redireciona para index.html
     }
 
     window.addEventListener('DOMContentLoaded', () => {
