@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat Cinematográfico - Dual Infodose</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background-dark: linear-gradient(to bottom, #000000, #1a1a1a);
+      --background-light: linear-gradient(to bottom, #ffffff, #e0e0e0);
+      --text-dark: white;
+      --text-light: black;
+      --primary-color: #00ffff;
+      --secondary-color: #ff00ff;
+    }
+
+    body {
+      background: var(--background-dark);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 20px;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 0;
+      left: 0;
+    }
+
+    .circle {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid var(--primary-color);
+      animation: pulse 2s infinite;
+      background: transparent;
+    }
+
+    .circle::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      border-left: 8px solid var(--secondary-color);
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-radius: 100px 0 0 100px;
+    }
+
+    .chat-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      height: 60vh;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 80%;
+      word-wrap: break-word;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: rgba(0, 255, 255, 0.2);
+    }
+
+    .message.bot {
+      align-self: flex-start;
+      background: rgba(255, 0, 255, 0.2);
+    }
+
+    .input-container {
+      display: flex;
+    }
+
+    input {
+      flex-grow: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      margin-right: 10px;
+      outline: none;
+      font-size: 1em;
+      background: rgba(255, 255, 255, 0.1);
+      color: inherit;
+    }
+
+    button {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      color: white;
+      font-size: 1.5em;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-theme {
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7), 0 0 0 0 rgba(255, 0, 255, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 20px 20px rgba(0, 255, 255, 0), 0 0 20px 20px rgba(255, 0, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0), 0 0 0 0 rgba(255, 0, 255, 0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="particles-js"></div>
+  <div class="circle"></div>
+
+  <div class="chat-container">
+    <div class="messages" id="messages"></div>
+
+    <div class="input-container">
+      <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+    <div class="toggle-theme" onclick="toggleTheme()">Alternar Modo Claro/Escuro</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    let darkMode = true;
+
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 40, "density": { "enable": true, "value_area": 600 } },
+        "color": { "value": ["#00ffff", "#ff00ff"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.4, "random": true },
+        "size": { "value": 3, "random": true },
+        "move": { "enable": true, "speed": 1.2, "direction": "none", "out_mode": "out" }
+      },
+      "retina_detect": true
+    });
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (text === "") return;
+
+      addMessage(text, "user");
+      input.value = "";
+
+      setTimeout(() => {
+        const reply = generateBotReply(text);
+        addMessage(reply, "bot");
+        speak(reply);
+      }, 800);
+    }
+
+    function addMessage(text, sender) {
+      const messages = document.getElementById('messages');
+      const msg = document.createElement('div');
+      msg.className = `message ${sender}`;
+      msg.textContent = text;
+      messages.appendChild(msg);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function generateBotReply(userText) {
+      return "Recebi sua mensagem: " + userText;
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'pt-BR';
+      utterance.pitch = 1.2;
+      utterance.rate = 1;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleTheme() {
+      darkMode = !darkMode;
+      if (darkMode) {
+        document.body.style.background = "linear-gradient(to bottom, #000000, #1a1a1a)";
+        document.body.style.color = "white";
+      } else {
+        document.body.style.background = "linear-gradient(to bottom, #ffffff, #e0e0e0)";
+        document.body.style.color = "black";
+      }
+    }
+  </script>
+
+</body>
+</html>
