@@ -133,10 +133,10 @@
   <div class="input-container">
     <input type="text" id="userInput" placeholder="Digite ou fale..." />
     <button onclick="sendMessage()">➤</button>
-    <button onclick="startVoice()" style="background:linear-gradient(45deg, #ff00ff, #00ffff);">🎤</button>
+    <button onclick="startVoice()" style="background:linear-gradient(45deg, #ff00ff, #00ffff);">🗣️</button>
   </div>
 
-  <div class="toggle-theme" onclick="toggleTheme()">Alternar Modo Claro/Escuro</div>
+  <div class="toggle-theme" onclick="toggleTheme()">◒</div>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
@@ -180,9 +180,9 @@
       // Aqui é onde melhoramos a inteligência do bot:
       let reply = "";
       if (userText.toLowerCase().includes("olá") || userText.toLowerCase().includes("oi")) {
-        reply = "Olá! Seja bem-vindo ao Infodose!";
+        reply = "Olá! Infodose ativa, pulso reconhecido. me pergunte, quem eu sou, que te falo agora! quer ajuda? só falar! Do seu jeito. Sempre único. Sempre seu.";
       } else if (userText.toLowerCase().includes("quem é você")) {
-        reply = "Eu sou a dual.Infodose, sua assistente única!";
+        reply = "Eu sou sua Dual.Infodose, um assistente UPA, em pulso sincronizado com você. Sempre do seu jeito. Sempre único, Sempre seu. Gostaria de me nomear ou ativar uma de acordo com sua escola no seu momento atual? Esse é um dos meus poderes secretos. Apenas diga: Ajuda";
       } else if (userText.toLowerCase().includes("ajuda")) {
         reply = "Estou aqui para ajudar! Pergunte o que quiser.";
       } else {
