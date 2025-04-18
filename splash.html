@@ -193,18 +193,32 @@
       "retina_detect": true
     });
 
-    // Função para redirecionar
-    function goToIndex() {
-      document.body.style.animation = "fadeOutBody 1.5s forwards";
-      setTimeout(function(){
+     // Animações cinematográficas com GSAP
+      gsap.to(logo, {
+        scale: 0,
+        duration: 1.2,
+        ease: "power3.out"
+      });
+
+      gsap.to(".infodose", { opacity: 0, duration: 0.8, delay: 0.3 });
+      gsap.to(".frase", { opacity: 0, duration: 0.8, delay: 0.3 });
+
+
+      // Fade final
+      setTimeout(() => {
+        document.body.style.animation = "fadeOutBody 1.2s forwards";
+      }, 800);
+
+      // Redireciona ao final
+      setTimeout(() => {
         window.location.href = "index.html";
-      }, 1500);
+      }, 1600);
     }
 
-    // Redirecionamento automático depois de 78 segundos
-    setTimeout(function() {
+    // Redirecionamento automático após 78s
+    setTimeout(() => {
       goToIndex();
-    }, 78000); // 78.000 milissegundos = 78 segundos
+    }, 78000);
   </script>
 
 </body>
