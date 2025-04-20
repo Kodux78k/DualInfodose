@@ -188,7 +188,7 @@
     <iframe id="frame" src="Indexdual3-upgrade.html" class="active"></iframe>
   </div>
 
-  <div class="symbol-bar" id="symbolBar">
+  <div class="symbol-bar">
     <button class="symbol-button" onclick="loadPage('Indexdual3-upgrade.html')">◉</button>
     <button class="symbol-button" onclick="loadPage('Meta-pulso-cosmico.html')">◉</button>
     <button class="symbol-button" onclick="loadPage('MetaLux_Particulas_JSONLocal.html')">◉</button>
@@ -196,11 +196,8 @@
 
   <button class="lock-button" onclick="loadPage('splash.html')"></button>
 
-  <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()"></button>
-
   <script>
     const frame = document.getElementById('frame');
-    const symbolBar = document.getElementById('symbolBar');
 
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
@@ -213,11 +210,7 @@
         frame.onload = () => frame.classList.add('active');
       }, 300);
     }
-
-    function toggleMenu() {
-      symbolBar.classList.toggle('hidden');
-    }
   </script>
 
-</body>
-</html>
+
+</body></html>
