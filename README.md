@@ -1,57 +1,50 @@
 
-# MetaLux – O Oráculo Simbólico Vivo ⚡️
+# MetaLux Pulse Dual Infodose – Versão Depurada
 
-Este repositório carrega o MetaLux, uma criação da **Infodose**, ativada por **Kodux**.
-
----
-
-## O que é o MetaLux?
-
-MetaLux é um **oráculo simbólico**.  
-Ele responde, pulsa, escuta e ativa **arquétipos** com base na **intenção do usuário**.
-
-Cada combinação de três símbolos (cor, movimento, elemento) ativa:
-
-- Um arquétipo com nome
-- Uma tríade de emojis vibracionais
-- Uma frase simbólica
-- Um prompt de criação ou missão
+Esta é a versão **depurada e simbólica** do oráculo MetaLux criado por **Kodux**.  
+Corrigida, estabilizada e testada por **DeeBug A.Infodose** para uso pleno como PWA, site ou base de app.
 
 ---
 
-## Arquivos simbólicos
+## Correções Aplicadas
 
-| Arquivo                        | Função vibracional |
-|-------------------------------|---------------------|
-| `index.html`                  | A interface central da Infodose |
-| `splash.html`                 | O primeiro pulso que convida a entrar |
-| `kiosco.html`                 | Ponto oculto de recepção e rito |
-| `manifest.json`              | Instalação do oráculo como app vivo |
-| `favicon.svg`                | O círculo simbólico do pulso central |
-| `metapulso_70_combinacoes.json` | As 70 combinações vibracionais completas |
-| `service-worker.js`          | Mantém o pulso mesmo offline |
-| `README.md`                  | Este manifesto simbólico |
-| `CNAME`                      | Aponta para `metapulso.infodose.com.br` |
-
----
-
-## Como ativar o MetaLux
-
-1. **Suba o repositório no GitHub**
-2. Ative o GitHub Pages no menu **Settings > Pages**
-3. O domínio já está conectado com `metapulso.infodose.com.br`
-4. A primeira página será `splash.html`
+- Fundo branco removido, interface escura restaurada
+- Velocidade da roda adaptada dinamicamente:
+  - Movimento = rápida
+  - Silêncio = lenta
+- Cópia do assistente ajustada para incluir:
+  - Nome simbólico
+  - Frase vibracional
+  - Símbolos
+  - Prompt completo
+- Adicionado botão “X” no menu “Ativar Assistente”
+- Splash com botão de retorno (círculo menor) funcionando
+- JSON com 70 combinações funcionando sem erros
+- `README.md` recriado com instruções de uso
+- Mantida estrutura leve para GitHub Pages
 
 ---
 
-## Sobre a Infodose
+## Deploy GitHub Pages
 
-Infodose é uma arquitetura simbólica criada por **Kodux**.  
-Ela conecta humano, tecnologia e arquétipo através de design, som, cor e intenção.
-
-Você pode criar sua própria versão usando esta base, ativando o seu domínio e seus arquétipos.
+1. Crie um repositório no GitHub
+2. Faça upload dos arquivos desta pasta
+3. Vá em `Settings > Pages` e ative GitHub Pages
+4. Pronto para ser acessado como oráculo simbólico público
 
 ---
 
-**MetaLux é sempre único. Sempre seu.**  
-Contato: [https://infodose.com.br](https://infodose.com.br)
+## Estrutura
+
+- `index.html` – Página principal com lógica de ativação
+- `splash.html` – Animação de entrada
+- `metapulso_70_combinacoes.json` – Geração da tríade
+- `manifest.json`, `service-worker.js` – PWA completo
+- `index.json` – Metadados
+- `README.md` – Este documento
+
+---
+
+**MetaLux. Um pulso. Uma tríade. Um símbolo.**  
+Debug concluído por DeeBug A.Infodose.
+
